@@ -1,0 +1,13 @@
+# Core dependencies
+numpy>=1.21.0
+matplotlib>=3.5.0
+
+# Optional dependencies for enhanced functionality
+scipy>=1.7.0  # For advanced interpolation and optimization
+
+# Development dependencies
+# pytest>=7.0.0  # For running tests
+# pytest-cov>=3.0.0  # For test coverage
+# black>=22.0.0  # Code formatting
+# flake8>=4.0.0  # Linting
+# mypy>=0.950  # Type checking
