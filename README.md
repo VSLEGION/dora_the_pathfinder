@@ -13,13 +13,13 @@ The fuel cost model is derived from first principles: lift coefficient, drag pol
 
 ## Features
 
-- **Physics-based cost functions** -- Fuel burn calculated from aerodynamic drag, propulsive efficiency, and SFC (not just Euclidean distance)
-- **Dijkstra and A* planners** -- Compare optimal vs. heuristic-guided search; A* typically explores 2-5x fewer nodes
-- **Dynamic flight corridors** -- Graph nodes generated within configurable corridors around waypoint legs, with adaptive expansion near obstacles
-- **Circular no-fly zones** -- Obstacles defined by center and radius; validated at graph construction
-- **Wind modeling** -- Wind speed and direction affect ground speed and fuel calculations
-- **Visualization** -- Matplotlib-based path plots, algorithm comparisons, and performance metrics
-- **Path smoothing (beta)** -- Tangent-arc trajectory smoothing for flyable paths (experimental, see below)
+- **Physics-based cost functions** -> Fuel burn calculated from aerodynamic drag, propulsive efficiency, and SFC (not just Euclidean distance)
+- **Dijkstra and A* planners** -> Compare optimal vs. heuristic-guided search; A* typically explores 2-5x fewer nodes
+- **Dynamic flight corridors** -> Graph nodes generated within configurable corridors around waypoint legs, with adaptive expansion near obstacles
+- **Circular no-fly zones** -> Obstacles defined by center and radius; validated at graph construction
+- **Wind modeling** -> Wind speed and direction affect ground speed and fuel calculations
+- **Visualization** -> Matplotlib-based path plots, algorithm comparisons, and performance metrics
+- **Path smoothing (beta)** -> Tangent-arc trajectory smoothing for flyable paths (experimental, see below)
 
 ## Project Structure
 
@@ -120,7 +120,7 @@ Both Dijkstra and A* find the fuel-optimal path. A* uses the fuel-burn heuristic
 
 ## Path Smoothing (Beta)
 
-The `smoother.py` module is under active development. It converts discrete A* paths into smooth, flyable trajectories using tangent-arc geometry inspired by CATIA sketch constraints:
+The `smoother.py` module is under active development. It converts discrete A* paths into smooth, flyable trajectories based on turn performance(beta):
 
 1. Simplify the discrete A* path
 2. Identify segments blocked by no-fly zones
