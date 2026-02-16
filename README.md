@@ -21,34 +21,6 @@ The fuel cost model is derived from first principles: lift coefficient, drag pol
 - **Visualization** -> Matplotlib-based path plots, algorithm comparisons, and performance metrics
 - **Path smoothing (beta)** -> Tangent-arc trajectory smoothing for flyable paths (experimental, see below)
 
-## Project Structure
-
-```
-dora_the_pathfinder/
-├── pathfinder/
-│   ├── __init__.py
-│   ├── models/
-│   │   ├── aircraft.py        # ScanEagle UAV aerodynamic model
-│   │   └── environment.py     # Wind, no-fly zones, terrain
-│   ├── planning/
-│   │   ├── graph.py           # Flight corridor graph construction
-│   │   ├── cost.py            # Fuel/distance/time cost functions
-│   │   ├── dijkstra.py        # Dijkstra's algorithm
-│   │   ├── astar.py           # A* with fuel-burn heuristic
-│   │   └── smoother.py        # Trajectory smoothing [beta]
-│   └── visualizer/
-│       └── visualizer.py      # Path and comparison plotting
-├── examples/
-│   ├── basic_pathfinder.py         # Dijkstra vs A* comparison
-│   ├── medium_range_pathfinding.py # Multi-waypoint delivery mission
-│   ├── animated_pathfinding.py     # Real-time A* search animation
-│   └── smoother_demo.py            # Path smoothing demo [beta]
-├── test/
-│   ├── test_aircraft.py
-│   └── test_cost.py
-└── requirements.txt
-```
-
 ## Installation
 
 ```bash
@@ -112,21 +84,10 @@ The default aircraft is the Boeing ScanEagle (28 kg, 3.1m wingspan, 28 m/s cruis
 - Power required: `P = D * V / eta_prop`
 - Fuel rate: `fuel_rate = SFC * P`
 
-### Graph Construction
-For each waypoint-to-waypoint leg, a corridor of navigable nodes is generated. Nodes inside no-fly zones are excluded. Near obstacles, the corridor expands adaptively to ensure detour routes exist ("search widely, commit narrowly").
-
-### Algorithm Comparison
-Both Dijkstra and A* find the fuel-optimal path. A* uses the fuel-burn heuristic to guide search toward the goal, exploring significantly fewer nodes while guaranteeing the same optimal cost.
 
 ## Path Smoothing (Beta)
 
-The `smoother.py` module is under active development. It converts discrete A* paths into smooth, flyable trajectories based on turn performance(beta):
-
-1. Simplify the discrete A* path
-2. Identify segments blocked by no-fly zones
-3. Compute tangent entry/exit points on obstacle clearance circles
-4. Generate circular arcs between tangent points
-5. Fit a gentle spline over the resulting skeleton
+The `smoother.py` module is under active development. It converts discrete A* paths into smooth, flyable trajectories based on turn performance(beta).
 
 To try it:
 ```bash
